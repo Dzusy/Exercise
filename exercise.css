@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container{
+    max-width: 900px;
+    margin: 0 auto;
+    
+}
+.title{
+    color: rgb(87, 87, 248);
+    font-size: 50px;
+    font-weight: normal;
+}
+.text{
+    opacity: 0.7;
+}
+.colorDiv{
+    background-color: rgb(184, 182, 182);
+    padding: 50px 0;
+    
+}
+.btnEur,.btnEng,.btnMacedonia{
+    background-color: rgb(87, 87, 248);
+    color: white;
+    border-radius: 6px;
+    border: none;
+    padding: 8px;
+}
+.inputContainer{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+}
+input{
+    width: 700px;
+    height: 30px;
+}
+.btnSrc{
+    background-color: rgb(87, 87, 248);
+    color: white;
+    border: none;
+    padding: 9px;
+}
+.btnRst{
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 9px;
+    
+}
