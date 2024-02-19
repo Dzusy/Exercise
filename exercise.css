@@ -51,8 +51,27 @@ input{
     padding: 9px;
 
 }
-.card{
+/* .card{
     width: 300px;
     height: 300px;
     text-align: left;
-}
+    padding: 10px;
+} */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+    grid-gap: 20px; /* Adjust the gap between the cards */
+    justify-content: center;
+  }
+  .card {
+    max-width: 300px; /* Adjust the maximum width of the card as per your requirement */
+    margin: auto; /* Center the cards within the grid */
+  }
+  .inCard{
+    border: 1px solid black;
+  }
+  #flag{
+    width: 298px;
+    height: 170px;
+  }

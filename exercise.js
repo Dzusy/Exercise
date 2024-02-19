@@ -9,61 +9,108 @@ const tableContainer = document.getElementById("tableContainer");
 let showDataEur = [];
 
 const countriesData = async () => {
-    const res = await fetch(`https://restcountries.com/v3.1/all`);
-    const data = await res.json();
-    console.log(data);
-    createCard(data);
-    btnEur.addEventListener("click", () => {
-        euroShow(data);
-        console.log(showDataEur);
-        
-        
-    })
-}
-countriesData(); 
+  const res = await fetch(`https://restcountries.com/v3.1/all`);
+  const data = await res.json();
+  console.log(data);
+  createCard(data);
+  btnEur.addEventListener("click", () => {
+    // euroShow(data);
+    
+    let filterData = data.filter(
+      (country) =>
+        country.currencies &&
+        country.currencies.EUR &&
+        country.currencies.EUR.name === "Euro"
+    );
+    createCard(filterData);
+    console.log(filterData);
+    // showDataEur.push(filterData);
+  });
+  btnEng.addEventListener("click", () => {
+    engShow(data);
+    
+  });
+  btnMacedonia.addEventListener("click", () => {
+    macedShow(data);
+  })
+};
+countriesData();
 
 function createCard(data) {
-    for (let i = 0; i < data.length; i++) {
-    tableContainer.innerHTML += `
-      <div class="card">
-        <div class="inCard">
-          <img src="${data[i].flags.png}" />
+  tableContainer.innerHTML = "";
+  for (let i = 0; i < data.length; i++) {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const inCard = document.createElement("div");
+    inCard.className = "inCard";
+
+    inCard.innerHTML = `
+          <img id="flag" src="${data[i].flags.png}" />
           <h2>${data[i].name.common}</h2>
-        </div>
-      </div>`;
+          <p>${data[i].name.common} is a country with a population of ${data[i].population} and capital of ${data[i].capital}</p>
+          <br><hr>
+          <p>Open on <a href="https://en.wikipedia.org/wiki/${data[i].name.common}">Wikipedia</a></p>
+        `;
+
+    card.appendChild(inCard);
+    tableContainer.appendChild(card);
   }
+
+  //     for (let i = 0; i < data.length; i++) {
+  //     tableContainer.innerHTML += `
+  //       <div id="card" class="card">
+  //         <div class="inCard">
+  //           <img src="${data[i].flags.png}" />
+  //           <h2>${data[i].name.common}</h2>
+  //           <p>${data[i].name.common} is coutry with population of ${data[i].population} and capital of ${data[i].capital}</p>
+  //           <br><hr>
+  //           <p>Open on <a href="https://en.wikipedia.org/wiki/${data[i].name.common}">Wikipedia</a></p>
+  //         </div>
+  //       </div>`;
+  //   }
 }
- 
 
-function euroShow(data){
-    // console.log(data);
-    let filterData = data.filter((country) => 
-    country.currencies && country.currencies.EUR && country.currencies.EUR.name === "Euro");
-    console.log(filterData);
-    showDataEur.push(filterData);
-    tableContainer.innerHTML = `
-    <div>${showDataEur}</div>
-    <img src="${showDataEur.data.flags.png}" />
+// function euroShow(data){
+//     // console.log(data);
+//     let filterData = data.filter((country) =>
+//     country.currencies && country.currencies.EUR && country.currencies.EUR.name === "Euro");
+//     console.log(filterData);
+//     showDataEur.push(filterData);
+//     tableContainer.innerHTML = `
+//     <div>${showDataEur}</div>
+//     <img src="${showDataEur.data.flags.png}" />
 
+//     `;
+// };
 
-    `;
-};
-
-
-
-
-
-
-
-function engShow(data){
-    // console.log(data);
-    let filterData = data.filter((country) => 
-    country.languages && country.languages.eng && country.languages.eng.name === "English");
-    console.log(filterData);
-};
-function macedShow(data){
-    // console.log(data);
-    let filterData = data.filter((country) => 
-    country.languages && country.languages.mkd && country.languages.mkd.name === "Macedonian");
-    console.log(filterData);
-};
+function engShow(data) {
+  // console.log(data);
+  tableContainer.innerHTML = "";
+  let filterData = data.filter(
+    (country) =>
+      country.languages &&
+      country.languages.eng
+  );
+  console.log(filterData);
+  createCard(filterData);
+  
+  // let filterData = data.filter(
+  //   (country) =>
+  //     country.languages ||
+  //     country.languages.eng ||
+  //     country.languages.eng.name === "English"
+  // );
+  // console.log(filterData);
+}
+function macedShow(data) {
+  tableContainer.innerHTML = "";
+  // console.log(data);
+  let filterData = data.filter(
+    (country) =>
+      country.languages &&
+      country.languages.mkd 
+  );
+  console.log(filterData);
+  createCard(filterData);
+}
