@@ -32,7 +32,50 @@ const countriesData = async () => {
   });
   btnMacedonia.addEventListener("click", () => {
     macedShow(data);
-  })
+  });
+  
+  btnSrc.addEventListener("click", () => {
+    let searchValue = input.value.trim().toLowerCase();
+    if (searchValue !== "") {
+      let filteredData = data.filter(country =>
+        country.name.common.toLowerCase().includes(searchValue)
+      );
+      if (filteredData.length > 0) {
+        createCard(filteredData);
+      } else {
+        tableContainer.innerHTML = "<p>Country not found</p>";
+      }
+    }
+  });
+
+//   btnSrc.addEventListener("click", () => {
+//     let searchValue = input.value.trim().toLowerCase();
+//     if (searchValue !== "") {
+//       let foundCountry = data.find(country =>
+//         country.name.common.toLowerCase() === searchValue
+//       );
+      
+//       createCard(foundCountry || { name: { common: "Country not found" } });
+//     }
+// });
+
+  // btnSrc.addEventListener("click", () => {
+  //   let searchValue = input.value.trim().toLowerCase();
+  //   if (searchValue !== "") {
+  //     let foundCountry = data.find(country =>
+  //       country.name.common.toLowerCase() === searchValue
+  //     );
+  //     if (foundCountry) {
+  //       createCard(foundCountry);
+  //     } else {
+  //       tableContainer.innerHTML = "<p>Country not found</p>";
+  //     }
+  //   }
+  // });
+btnRst.addEventListener("click", () => {
+  clearResult(); 
+});
+
 };
 countriesData();
 
@@ -114,3 +157,7 @@ function macedShow(data) {
   console.log(filterData);
   createCard(filterData);
 }
+
+function clearResult() {
+  tableContainer.innerHTML = "";
+};

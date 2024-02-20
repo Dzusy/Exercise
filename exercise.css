@@ -60,13 +60,13 @@ input{
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
-    grid-gap: 20px; /* Adjust the gap between the cards */
+    grid-template-columns: repeat(3, 1fr); 
+    grid-gap: 20px; 
     justify-content: center;
   }
   .card {
-    max-width: 300px; /* Adjust the maximum width of the card as per your requirement */
-    margin: auto; /* Center the cards within the grid */
+    max-width: 300px; 
+    margin: auto; 
   }
   .inCard{
     border: 1px solid black;
